@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senior High School Library</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family: Arial, sans-serif;}
+body{background:#f4f6f9;color:#333;}
+header{background:#0b3c5d;color:white;padding:15px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+header h1{font-size:20px;}
+nav ul{list-style:none;display:flex;align-items:center;}
+nav ul li{position:relative;margin-left:20px;}
+nav a{color:white;text-decoration:none;font-weight:bold;display:block; padding:5px 10px;}
+nav a:hover{text-decoration:underline;cursor:pointer;}
+/* Fixed submenu hover: keep visible while cursor over parent or submenu */
+nav ul li ul{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    background:#0b3c5d;
+    padding:5px 0;
+    border-radius:5px;
+    min-width:180px;
+    z-index:1000;
+}
+nav ul li:hover > ul,
+nav ul li ul:hover {
+    display:block;
+}
+nav ul li ul li a{padding:5px 15px;}
+nav ul li ul li a:hover{text-decoration:underline;}
+
+.hero{background:linear-gradient(to right,#0b3c5d,#1e90ff);color:white;padding:80px 20px;text-align:center;}
+.hero h2{font-size:40px;}
+.hero p{font-size:18px;margin-top:10px;}
+.section{padding:50px 20px;max-width:1000px;margin:auto;}
+.section h2{font-size:30px;text-align:center;margin-bottom:20px;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:20px;}
+.card{background:white;padding:20px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+.card h3{margin-bottom:10px;color:#0b3c5d;font-size:18px;}
+.card p{font-size:14px;color:#333;}
+footer{background:#222;color:white;text-align:center;padding:15px;margin-top:40px;}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>San Pedro College</h1>
+    <h2>Learning Resource Center</h2>
+    <nav>
+        <ul>
+            <li><a href="#" id="home-nav">Home</a></li>
+            <li><a href="#" id="about-nav">About</a>
+                <ul>
+                    <li><a href="#" class="about-sub" data-index="0">Strategic Framework</a></li>
+                    <li><a href="#" class="about-sub" data-index="1">Our Vision</a></li>
+                    <li><a href="#" class="about-sub" data-index="2">Our Mission</a></li>
+                    <li><a href="#" class="about-sub" data-index="3">Our Goal</a></li>
+                </ul>
+            </li>
+            <li><a href="#" id="services-nav">Services</a>
+                <ul>
+                    <li><a href="#" class="service-sub" data-index="0">Book Borrowing</a></li>
+                    <li><a href="#" class="service-sub" data-index="1">Online & Face-to-Face</a></li>
+                    <li><a href="#" class="service-sub" data-index="2">Book Digitization</a></li>
+                    <li><a href="#" class="service-sub" data-index="3">Online Document Delivery</a></li>
+                    <li><a href="#" class="service-sub" data-index="4">Access Databases</a></li>
+                    <li><a href="#" class="service-sub" data-index="5">Related Literature</a></li>
+                    <li><a href="#" class="service-sub" data-index="6">Web OPAC</a></li>
+                </ul>
+            </li>
+            <li><a href="#" id="facilities-nav">Facilities</a>
+                <ul>
+                    <li><a href="#" class="facility-sub" data-index="0">Baggage Counter</a></li>
+                    <li><a href="#" class="facility-sub" data-index="1">Info Desk</a></li>
+                    <li><a href="#" class="facility-sub" data-index="2">Reading Area</a></li>
+                    <li><a href="#" class="facility-sub" data-index="3">Stack Room</a></li>
+                    <li><a href="#" class="facility-sub" data-index="4">Restroom</a></li>
+                    <li><a href="#" class="facility-sub" data-index="5">SHS Collection</a></li>
+                    <li><a href="#" class="facility-sub" data-index="6">SmartLib Attendance</a></li>
+                    <li><a href="#" class="facility-sub" data-index="7">RFID Security Gate</a></li>
+                </ul>
+            </li>
+            <li><a href="#" id="faqs-nav">FAQs</a></li>
+            <li><a href="#" id="contact-nav">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h2>Welcome to Senior High School Library</h2>
+    <p>"Courteous & Joyful Services"</p>
+</section>
+
+<section class="section" id="about-display" style="display:none;">
+    <h2>About Learning Resource Center</h2>
+    <div id="about-cards" class="cards-grid"></div>
+</section>
+
+<section class="section" id="service-display" style="display:none;">
+    <h2>Library Services Offered</h2>
+    <div id="services-cards" class="cards-grid"></div>
+</section>
+
+<section class="section" id="facility-display" style="display:none;">
+    <h2>Library Areas & Facilities</h2>
+    <div id="facilities-cards" class="cards-grid"></div>
+</section>
+
+<section class="section" id="faqs" style="display:none;">
+    <h2>Frequently Asked Questions</h2>
+    <div id="faqs-list"></div>
+</section>
+
+<section class="section" id="contact" style="display:none;">
+    <h2>Contact Us</h2>
+    <p>Email Us: lrc@spcdavao.edu.ph<br>
+       Contact Us: (082)-221-0634 Local 1516 - 5F Info. Desk<br>
+       Connect with Us in Facebook: SPC Learning Resource Center</p>
+</section>
+
+<footer>
+    <p>© 2026 Senior High School Library | All Rights Reserved</p>
+</footer>
+
+<script>
+// Data
+const aboutData = [
+{title: "Strategic Framework", description: "The Learning Resource Center is an academic support service and an educational resource center showing love, excellence, courtesy."},
+{title:"Our Vision", description:"A service and resource center manifesting the love of the compassionate Jesus."},
+{title:"Our Mission", description:"To serve as an integral part of the educational program of the college."},
+{title:"Our Goal", description:"Provide information and resources responsive to educational, research, and recreational needs."}
+];
+
+const servicesData = [
+{title:"Book Borrowing", description:"Students and teachers may borrow library books."},
+{title:"Online & Face-to-Face", description:"Library staff assist with research questions."},
+{title:"Book Digitization", description:"Request books and digitized copies."},
+{title:"Online Document Delivery", description:"Electronic delivery of requested materials."},
+{title:"Access Databases", description:"Access academic and research databases."},
+{title:"Related Literature", description:"Assistance in finding research literature."},
+{title:"Web OPAC", description:"Search books and library materials online."}
+];
+
+const facilitiesData = [
+{title:"Baggage Counter", description:"Secure your bags before entering the library."},
+{title:"Info Desk", description:"Assistance with inquiries, borrowing, returning books."},
+{title:"Reading Area", description:"Quiet space for reading, studying, research."},
+{title:"Stack Room", description:"Storage area for books and reference materials."},
+{title:"Restroom", description:"Clean and accessible facilities."},
+{title:"SHS Collection", description:"Dedicated resources for Senior High School students."},
+{title:"SmartLib Attendance", description:"Monitor and record student library visits."},
+{title:"RFID Security Gate", description:"Ensures security of library materials."}
+];
+
+const faqsData = [
+{question:"What are the LRC opening hours?",answer:"Mon-Sat: 7AM-7:30PM. Summer: 8AM-12NN, 1-5PM. Closed Sundays/Holidays."},
+{question:"How can I request online resources?",answer:"Message lrc@spcdavao.edu.ph with SPC ID copy."},
+{question:"Can I have the complete digitized copy?",answer:"Up to 10% allowed by copyright law, online reading only."},
+{question:"Can I access the library remotely?",answer:"Yes, use online catalog and digital resources from home."}
+];
+
+// DOM
+const sections = {
+    home: document.getElementById("home"),
+    about: document.getElementById("about-display"),
+    services: document.getElementById("service-display"),
+    facilities: document.getElementById("facility-display"),
+    faqs: document.getElementById("faqs"),
+    contact: document.getElementById("contact")
+};
+const aboutCards = document.getElementById("about-cards");
+const servicesCards = document.getElementById("services-cards");
+const facilitiesCards = document.getElementById("facilities-cards");
+const faqsList = document.getElementById("faqs-list");
+
+// Hide all
+function hideAll(){ 
+    for(let key in sections) sections[key].style.display="none";
+    aboutCards.innerHTML=""; servicesCards.innerHTML=""; facilitiesCards.innerHTML="";
+}
+
+// Show section
+function showSection(section){ hideAll(); sections[section].style.display="block"; }
+
+// Submenu show
+function showAbout(index){ hideAll(); sections.about.style.display="block"; const s=aboutData[index]; const c=document.createElement("div");c.className="card"; c.innerHTML=`<h3>${s.title}</h3><p>${s.description}</p>`; aboutCards.appendChild(c);}
+function showServices(index){ hideAll(); sections.services.style.display="block"; const s=servicesData[index]; const c=document.createElement("div");c.className="card"; c.innerHTML=`<h3>${s.title}</h3><p>${s.description}</p>`; servicesCards.appendChild(c);}
+function showFacilities(index){ hideAll(); sections.facilities.style.display="block"; const s=facilitiesData[index]; const c=document.createElement("div");c.className="card"; c.innerHTML=`<h3>${s.title}</h3><p>${s.description}</p>`; facilitiesCards.appendChild(c);}
+
+// Main nav
+document.getElementById("home-nav").addEventListener("click", e=>{e.preventDefault(); hideAll(); sections.home.style.display="block";});
+document.getElementById("faqs-nav").addEventListener("click", e=>{e.preventDefault(); hideAll(); sections.faqs.style.display="block"; loadFAQs();});
+document.getElementById("contact-nav").addEventListener("click", e=>{e.preventDefault(); hideAll(); sections.contact.style.display="block";});
+
+// Submenu clicks
+document.querySelectorAll(".about-sub").forEach(a=>{a.addEventListener("click", e=>{e.preventDefault(); showAbout(parseInt(a.dataset.index));});});
+document.querySelectorAll(".service-sub").forEach(a=>{a.addEventListener("click", e=>{e.preventDefault(); showServices(parseInt(a.dataset.index));});});
+document.querySelectorAll(".facility-sub").forEach(a=>{a.addEventListener("click", e=>{e.preventDefault(); showFacilities(parseInt(a.dataset.index));});});
+
+// Load FAQs
+function loadFAQs(){ faqsList.innerHTML=""; faqsData.forEach(f=>{ const c=document.createElement("div"); c.style.marginBottom="10px"; const q=document.createElement("h3"); q.innerText="❓ "+f.question; q.style.cursor="pointer"; q.style.color="#0b3c5d"; const ans=document.createElement("p"); ans.innerText=f.answer; ans.style.display="none"; ans.style.paddingLeft="10px"; q.addEventListener("click",()=>{ans.style.display=ans.style.display==="none"?"block":"none";}); c.appendChild(q); c.appendChild(ans); faqsList.appendChild(c); });}
+
+</script>
+</body>
+</html>
